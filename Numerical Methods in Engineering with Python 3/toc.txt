@@ -1,0 +1,12 @@
+Table of Contents
+
+1. Introduction to Python
+2. Systems of linear algebraic equations
+3. Interpolation and curve fitting
+4. Roots of equations
+5. Numerical differentiation
+6. Numerical integration
+7. Initial value problems
+8. Two-point boundary value problems
+9. Symmetric matrix eigenvalue problems
+10. Introduction to optimization.
