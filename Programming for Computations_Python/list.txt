@@ -1,8 +1,0 @@
-AppA_Getting_Access_to_Python.md
-Ch01_The_First_Few_Steps.md
-Ch02_Basic_Constructions.md
-Ch03_Computing_Integrals.md
-Ch04_Solving_Ordinary_Differential_Equations.md
-Ch05_Solving_Partial_Differential_Equations.md
-Ch06_Solving_Nonlinear_Algebraic_Equations.md
-readme.md
