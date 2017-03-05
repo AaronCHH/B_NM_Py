@@ -4,6 +4,7 @@
 # Info
 [Springer](http://www.springer.com/gp/book/9783319324272)  
 [github](https://github.com/hplgit/prog4comp)  
+[book site](http://hplgit.github.io/prog4comp/index.html)  
 
 # Toc
 * [Ch01 The First Few Steps](Ch01_The_First_Few_Steps.md)  
