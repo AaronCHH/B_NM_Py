@@ -40,6 +40,7 @@
 <!-- tocstop -->
 
 
+
 ```python
 import sys
 sys.path.append("./py")
@@ -66,7 +67,7 @@ N = zeros(N_t+2)
 
 N[0] = N_0
 for n in range(N_t+1):
-N[n+1] = N[n] + r*dt*N[n]
+    N[n+1] = N[n] + r*dt*N[n]
 
 import matplotlib.pyplot as plt
 numerical_sol = 'bo' if N_t < 70 else 'b-'
@@ -89,25 +90,25 @@ from numpy import linspace, zeros, exp
 import matplotlib.pyplot as plt
 
 def ode_FE(f, U_0, dt, T):
-N_t = int(round(float(T)/dt))
-u = zeros(N_t+1)
-t = linspace(0, N_t*dt, len(u))
-u[0] = U_0
-for n in range(N_t):
-u[n+1] = u[n] + dt*f(u[n], t[n])
-return u, t
+    N_t = int(round(float(T)/dt))
+    u = zeros(N_t+1)
+    t = linspace(0, N_t*dt, len(u))
+    u[0] = U_0
+    for n in range(N_t):
+        u[n+1] = u[n] + dt*f(u[n], t[n])
+    return u, t
 
 def demo_population_growth():
-"""Test case: u'=r*u, u(0)=100."""
-def f(u, t):
-return 0.1*u
+    """Test case: u'=r*u, u(0)=100."""
+    def f(u, t):
+        return 0.1*u
 
-u, t = ode_FE(f=f, U_0=100, dt=0.5, T=20)
-plt.plot(t, u, t, 100*exp(0.1*t))
-plt.show()
+    u, t = ode_FE(f=f, U_0=100, dt=0.5, T=20)
+    plt.plot(t, u, t, 100*exp(0.1*t))
+    plt.show()
 
 if __name__ == '__main__':
-demo_population_growth()
+    demo_population_growth()
 
 ```
 
@@ -120,12 +121,12 @@ from ode_FE import ode_FE
 import matplotlib.pyplot as plt
 
 for dt, T in zip((0.5, 20), (60, 100)):
-u, t = ode_FE(f=lambda u, t: 0.1*(1 - u/500.)*u, \
-U_0=100, dt=dt, T=T)
-plt.figure()  # Make separate figures for each pass in the loop
-plt.plot(t, u, 'b-')
-plt.xlabel('t'); plt.ylabel('N(t)')
-plt.savefig('tmp_%g.png' % dt); plt.savefig('tmp_%g.pdf' % dt)
+    u, t = ode_FE(f=lambda u, t: 0.1*(1 - u/500.)*u, \
+                               U_0=100, dt=dt, T=T)
+    plt.figure()  # Make separate figures for each pass in the loop
+    plt.plot(t, u, 'b-')
+    plt.xlabel('t'); plt.ylabel('N(t)')
+    plt.savefig('tmp_%g.png' % dt); plt.savefig('tmp_%g.pdf' % dt)
 
 ```
 
@@ -137,26 +138,26 @@ plt.savefig('tmp_%g.png' % dt); plt.savefig('tmp_%g.pdf' % dt)
 from ode_FE import ode_FE
 
 def test_ode_FE():
-"""Test that a linear u(t)=a*t+b is exactly reproduced."""
+    """Test that a linear u(t)=a*t+b is exactly reproduced."""
 
-def exact_solution(t):
-return a*t + b
+    def exact_solution(t):
+        return a*t + b
 
-def f(u, t):  # ODE
-return a + (u - exact_solution(t))**m
+    def f(u, t):  # ODE
+        return a + (u - exact_solution(t))**m
 
-a = 4
-b = -1
-m = 6
+    a = 4
+    b = -1
+    m = 6
 
-dt = 0.5
-T = 20.0
+    dt = 0.5
+    T = 20.0
 
-u, t = ode_FE(f, exact_solution(0), dt, T)
-diff = abs(exact_solution(t) - u).max()
-tol = 1E-15           # Tolerance for float comparison
-success = diff < tol
-assert success
+    u, t = ode_FE(f, exact_solution(0), dt, T)
+    diff = abs(exact_solution(t) - u).max()
+    tol = 1E-15           # Tolerance for float comparison
+    success = diff < tol
+    assert success
 
 test_ode_FE()
 
@@ -200,9 +201,9 @@ R[0] = 0
 
 # Step equations forward in time
 for n in range(N_t):
-S[n+1] = S[n] - dt*beta*S[n]*I[n] + dt*nu*R[n]
-I[n+1] = I[n] + dt*beta*S[n]*I[n] - dt*gamma*I[n]
-R[n+1] = R[n] + dt*gamma*I[n] - dt*nu*R[n]
+    S[n+1] = S[n] - dt*beta*S[n]*I[n] + dt*nu*R[n]
+    I[n+1] = I[n] + dt*beta*S[n]*I[n] - dt*gamma*I[n]
+    R[n+1] = R[n] + dt*gamma*I[n] - dt*nu*R[n]
 
 fig = plt.figure()
 l1, l2, l3 = plt.plot(t, S, t, I, t, R)
@@ -226,50 +227,50 @@ from numpy import linspace, zeros, asarray
 import matplotlib.pyplot as plt
 
 def ode_FE(f, U_0, dt, T):
-N_t = int(round(float(T)/dt))
-# Ensure that any list/tuple returned from f_ is wrapped as array
-f_ = lambda u, t: asarray(f(u, t))
-u = zeros((N_t+1, len(U_0)))
-t = linspace(0, N_t*dt, len(u))
-u[0] = U_0
-for n in range(N_t):
-u[n+1] = u[n] + dt*f_(u[n], t[n])
-return u, t
+    N_t = int(round(float(T)/dt))
+    # Ensure that any list/tuple returned from f_ is wrapped as array
+    f_ = lambda u, t: asarray(f(u, t))
+    u = zeros((N_t+1, len(U_0)))
+    t = linspace(0, N_t*dt, len(u))
+    u[0] = U_0
+    for n in range(N_t):
+        u[n+1] = u[n] + dt*f_(u[n], t[n])
+    return u, t
 
 def demo_SIR():
-"""Test case using a SIR model."""
-def f(u, t):
-S, I, R = u
-return [-beta*S*I, beta*S*I - gamma*I, gamma*I]
+    """Test case using a SIR model."""
+    def f(u, t):
+        S, I, R = u
+        return [-beta*S*I, beta*S*I - gamma*I, gamma*I]
 
-beta = 10./(40*8*24)
-gamma = 3./(15*24)
-dt = 0.1             # 6 min
-D = 30               # Simulate for D days
-N_t = int(D*24/dt)   # Corresponding no of hours
-T = dt*N_t           # End time
-U_0 = [50, 1, 0]
+    beta = 10./(40*8*24)
+    gamma = 3./(15*24)
+    dt = 0.1             # 6 min
+    D = 30               # Simulate for D days
+    N_t = int(D*24/dt)   # Corresponding no of hours
+    T = dt*N_t           # End time
+    U_0 = [50, 1, 0]
 
-u, t = ode_FE(f, U_0, dt, T)
+    u, t = ode_FE(f, U_0, dt, T)
 
-S = u[:,0]
-I = u[:,1]
-R = u[:,2]
-fig = plt.figure()
-l1, l2, l3 = plt.plot(t, S, t, I, t, R)
-fig.legend((l1, l2, l3), ('S', 'I', 'R'), 'lower right')
-plt.xlabel('hours')
-plt.show()
+    S = u[:,0]
+    I = u[:,1]
+    R = u[:,2]
+    fig = plt.figure()
+    l1, l2, l3 = plt.plot(t, S, t, I, t, R)
+    fig.legend((l1, l2, l3), ('S', 'I', 'R'), 'lower right')
+    plt.xlabel('hours')
+    plt.show()
 
-# Consistency check:
-N = S[0] + I[0] + R[0]
-eps = 1E-12  # Tolerance for comparing real numbers
-for n in range(len(S)):
-success = abs(S[n] + I[n] + R[n] - N) < eps
-assert success
+    # Consistency check:
+    N = S[0] + I[0] + R[0]
+    eps = 1E-12  # Tolerance for comparing real numbers
+    for n in range(len(S)):
+        success = abs(S[n] + I[n] + R[n] - N) < eps
+        assert success
 
 if __name__ == '__main__':
-demo_SIR()
+    demo_SIR()
 
 ```
 
@@ -278,9 +279,9 @@ demo_SIR()
 
 ```python
 for n in range(N_t):
-S[n+1] = S[n] - dt*beta*S[n]*I[n] + dt*nu*R[n]
-I[n+1] = I[n] + dt*beta*S[n]*I[n] - dt*gamma*I[n]
-R[n+1] = R[n] + dt*gamma*I[n] - dt*nu*R[n]
+    S[n+1] = S[n] - dt*beta*S[n]*I[n] + dt*nu*R[n]
+    I[n+1] = I[n] + dt*beta*S[n]*I[n] - dt*gamma*I[n]
+    R[n+1] = R[n] + dt*gamma*I[n] - dt*nu*R[n]
 ```
 
 ### 4.2.8 Incorporating Vaccination
@@ -290,7 +291,7 @@ R[n+1] = R[n] + dt*gamma*I[n] - dt*nu*R[n]
 
 ```python
 def p(t):
-return 0.005 if (6*24 <= t <= 15*24) else 0
+    return 0.005 if (6*24 <= t <= 15*24) else 0
 ```
 
 
@@ -334,15 +335,15 @@ v[0] = 0
 
 # Step equations forward in time
 for n in range(N_t):
-v[n+1] = v[n] - dt*omega**2*u[n]
-u[n+1] = u[n] + dt*v[n+1]
+    v[n+1] = v[n] - dt*omega**2*u[n]
+    u[n+1] = u[n] + dt*v[n+1]
 
 # Plot the last four periods to illustrate the accuracy
 # in long time simulations
 N4l = int(round(4*P/dt))  # No of intervals to be plotted
 fig = plt.figure()
 l1, l2 = plt.plot(t[-N4l:], u[-N4l:], 'b-',
-t[-N4l:], X_0*cos(omega*t)[-N4l:], 'r--')
+                  t[-N4l:], X_0*cos(omega*t)[-N4l:], 'r--')
 fig.legend((l1, l2), ('numerical', 'exact'), 'upper left')
 plt.xlabel('t')
 plt.show()
@@ -370,209 +371,209 @@ print '%.16f %.16f' % (u[-1], v[-1])
 ```python
 # %load py/osc_EC_general.py
 from matplotlib.pyplot import plot, hold, legend, \
-xlabel, ylabel, savefig, title, figure, show
+     xlabel, ylabel, savefig, title, figure, show
 
 def EulerCromer(f, s, F, m, T, U_0, V_0, dt):
-from numpy import zeros, linspace
-N_t = int(round(T/dt))
-print 'N_t:', N_t
-t = linspace(0, N_t*dt, N_t+1)
+    from numpy import zeros, linspace
+    N_t = int(round(T/dt))
+    print 'N_t:', N_t
+    t = linspace(0, N_t*dt, N_t+1)
 
-u = zeros(N_t+1)
-v = zeros(N_t+1)
+    u = zeros(N_t+1)
+    v = zeros(N_t+1)
 
-# Initial condition
-u[0] = U_0
-v[0] = V_0
+    # Initial condition
+    u[0] = U_0
+    v[0] = V_0
 
-# Step equations forward in time
-for n in range(N_t):
-v[n+1] = v[n] + dt*(1./m)*(F(t[n]) - f(v[n]) - s(u[n]))
-u[n+1] = u[n] + dt*v[n+1]
-return u, v, t
+    # Step equations forward in time
+    for n in range(N_t):
+        v[n+1] = v[n] + dt*(1./m)*(F(t[n]) - f(v[n]) - s(u[n]))
+        u[n+1] = u[n] + dt*v[n+1]
+    return u, v, t
 
 def test_undamped_linear():
-"""Compare with data from osc_EC.py in a linear problem."""
-from numpy import pi
-omega = 2
-P = 2*pi/omega
-dt = P/20
-T = 40*P
-exact_v = -3.5035725322034139
-exact_u = 0.7283057044967003
-computed_u, computed_v, t = EulerCromer(
-f=lambda v: 0, s=lambda u: omega**2*u,
-F=lambda t: 0, m=1, T=T, U_0=2, V_0=0, dt=dt)
-diff_u = abs(exact_u - computed_u[-1])
-diff_v = abs(exact_v - computed_v[-1])
-tol = 1E-14
-assert diff_u < tol and diff_v < tol
+    """Compare with data from osc_EC.py in a linear problem."""
+    from numpy import pi
+    omega = 2
+    P = 2*pi/omega
+    dt = P/20
+    T = 40*P
+    exact_v = -3.5035725322034139
+    exact_u = 0.7283057044967003
+    computed_u, computed_v, t = EulerCromer(
+        f=lambda v: 0, s=lambda u: omega**2*u,
+        F=lambda t: 0, m=1, T=T, U_0=2, V_0=0, dt=dt)
+    diff_u = abs(exact_u - computed_u[-1])
+    diff_v = abs(exact_v - computed_v[-1])
+    tol = 1E-14
+    assert diff_u < tol and diff_v < tol
 
 def _test_manufactured_solution(damping=True):
-import sympy as sp
-t, m, k, b = sp.symbols('t m k b')
-# Choose solution
-u = sp.sin(t)
-v = sp.diff(u, t)
-# Choose f, s, F
-f = b*v
-s = k*sp.tanh(u)
-F = sp.cos(2*t)
+    import sympy as sp
+    t, m, k, b = sp.symbols('t m k b')
+    # Choose solution
+    u = sp.sin(t)
+    v = sp.diff(u, t)
+    # Choose f, s, F
+    f = b*v
+    s = k*sp.tanh(u)
+    F = sp.cos(2*t)
 
-equation = m*sp.diff(v, t) + f + s - F
+    equation = m*sp.diff(v, t) + f + s - F
 
-# Adjust F (source term because of manufactured solution)
-F += equation
-print 'F:', F
+    # Adjust F (source term because of manufactured solution)
+    F += equation
+    print 'F:', F
 
-# Set values for the symbols m, b, k
-m = 0.5
-k = 1.5
-b = 0.5 if damping else 0
-F = F.subs('m', m).subs('b', b).subs('k', k)
+    # Set values for the symbols m, b, k
+    m = 0.5
+    k = 1.5
+    b = 0.5 if damping else 0
+    F = F.subs('m', m).subs('b', b).subs('k', k)
 
-print f, s, F
-# Turn sympy expression into Python function
-F = sp.lambdify([t], F)
-# Define Python functions for f and s
-# (the expressions above are functions of t, we need
-# s(u) and f(v)
-from numpy import tanh
-s = lambda u: k*tanh(u)
-f = lambda v: b*v
+    print f, s, F
+    # Turn sympy expression into Python function
+    F = sp.lambdify([t], F)
+    # Define Python functions for f and s
+    # (the expressions above are functions of t, we need
+    # s(u) and f(v)
+    from numpy import tanh
+    s = lambda u: k*tanh(u)
+    f = lambda v: b*v
 
-# Add modules='numpy' such that exact u and v work
-# with t as array argument
-exact_u = sp.lambdify([t], u, modules='numpy')
-exact_v = sp.lambdify([t], v, modules='numpy')
+    # Add modules='numpy' such that exact u and v work
+    # with t as array argument
+    exact_u = sp.lambdify([t], u, modules='numpy')
+    exact_v = sp.lambdify([t], v, modules='numpy')
 
 
-# Solve problem for different dt
-from numpy import pi, sqrt, sum, log
-P = 2*pi
-time_intervals_per_period = [20, 40, 80, 160, 240]
-h   = []  # store discretization parameters
-E_u = []  # store errors in u
-E_v = []  # store errors in v
+    # Solve problem for different dt
+    from numpy import pi, sqrt, sum, log
+    P = 2*pi
+    time_intervals_per_period = [20, 40, 80, 160, 240]
+    h   = []  # store discretization parameters
+    E_u = []  # store errors in u
+    E_v = []  # store errors in v
 
-for n in time_intervals_per_period:
-dt = P/n
-T = 8*P
-computed_u, computed_v, t = EulerCromer(
-f=f, s=s, F=F, m=m, T=T,
-U_0=exact_u(0), V_0=exact_v(0), dt=dt)
+    for n in time_intervals_per_period:
+        dt = P/n
+        T = 8*P
+        computed_u, computed_v, t = EulerCromer(
+            f=f, s=s, F=F, m=m, T=T,
+            U_0=exact_u(0), V_0=exact_v(0), dt=dt)
 
-error_u = sqrt(dt*sum((exact_u(t) - computed_u)**2))
-error_v = sqrt(dt*sum((exact_v(t) - computed_v)**2))
-h.append(dt)
-E_u.append(error_u)
-E_v.append(error_v)
+        error_u = sqrt(dt*sum((exact_u(t) - computed_u)**2))
+        error_v = sqrt(dt*sum((exact_v(t) - computed_v)**2))
+        h.append(dt)
+        E_u.append(error_u)
+        E_v.append(error_v)
 
-"""
-# Compare exact and computed curves for this resolution
-figure()
-plot_u(computed_u, t, show=False)
-hold('on')
-plot(t, exact_u(t), show=True)
-legend(['numerical', 'exact'])
-savefig('tmp_%d.pdf' % n); savefig('tmp_%d.png' % n)
-"""
-# Compute convergence rates
-r_u = [log(E_u[i]/E_u[i-1])/log(h[i]/h[i-1])
-for i in range(1, len(h))]
-r_v = [log(E_u[i]/E_u[i-1])/log(h[i]/h[i-1])
-for i in range(1, len(h))]
-tol = 0.02
-exact_r_u = 1.0 if damping else 2.0
-exact_r_v = 1.0 if damping else 2.0
-success = abs(exact_r_u - r_u[-1]) < tol and \
-abs(exact_r_v - r_v[-1]) < tol
-msg = ' u rate: %.2f, v rate: %.2f' % (r_u[-1], r_v[-1])
-assert success, msg
+        """
+        # Compare exact and computed curves for this resolution
+        figure()
+        plot_u(computed_u, t, show=False)
+        hold('on')
+        plot(t, exact_u(t), show=True)
+        legend(['numerical', 'exact'])
+        savefig('tmp_%d.pdf' % n); savefig('tmp_%d.png' % n)
+        """
+    # Compute convergence rates
+    r_u = [log(E_u[i]/E_u[i-1])/log(h[i]/h[i-1])
+           for i in range(1, len(h))]
+    r_v = [log(E_u[i]/E_u[i-1])/log(h[i]/h[i-1])
+           for i in range(1, len(h))]
+    tol = 0.02
+    exact_r_u = 1.0 if damping else 2.0
+    exact_r_v = 1.0 if damping else 2.0
+    success = abs(exact_r_u - r_u[-1]) < tol and \
+              abs(exact_r_v - r_v[-1]) < tol
+    msg = ' u rate: %.2f, v rate: %.2f' % (r_u[-1], r_v[-1])
+    assert success, msg
 
 def test_manufactured_solution():
-_test_manufactured_solution(damping=True)
-_test_manufactured_solution(damping=False)
+    _test_manufactured_solution(damping=True)
+    _test_manufactured_solution(damping=False)
 
 # Plot the a percentage of the time series, up to the end, to
 # illustrate the accuracy in long time simulations
 def plot_u(u, t, percentage=100, show=True, heading='', labels=('t', 'u')):
-index = len(u)*percentage/100.
-plot(t[-index:], u[-index:], 'b-', show=show)
-xlabel(labels[0]);  ylabel(labels[1])
-title(heading)
-savefig('tmp.pdf'); savefig('tmp.png')
-if show:
-show()
+    index = len(u)*percentage/100.
+    plot(t[-index:], u[-index:], 'b-', show=show)
+    xlabel(labels[0]);  ylabel(labels[1])
+    title(heading)
+    savefig('tmp.pdf'); savefig('tmp.png')
+    if show:
+        show()
 
 def linear_damping():
-b = 0.3
-f = lambda v: b*v
-s = lambda u: k*u
-F = lambda t: 0
+    b = 0.3
+    f = lambda v: b*v
+    s = lambda u: k*u
+    F = lambda t: 0
 
-m = 1
-k = 1
-U_0 = 1
-V_0 = 0
+    m = 1
+    k = 1
+    U_0 = 1
+    V_0 = 0
 
-T = 12*pi
-dt = T/5000.
+    T = 12*pi
+    dt = T/5000.
 
-u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
-U_0=U_0, V_0=V_0, dt=dt)
-plot_u(u, t)
+    u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
+                          U_0=U_0, V_0=V_0, dt=dt)
+    plot_u(u, t)
 
 def linear_damping_sine_excitation():
-b = 0.3
-f = lambda v: b*v
-s = lambda u: k*u
-from math import pi, sin
-w = 1
-A = 0.5
-F = lambda t: A*sin(w*t)
+    b = 0.3
+    f = lambda v: b*v
+    s = lambda u: k*u
+    from math import pi, sin
+    w = 1
+    A = 0.5
+    F = lambda t: A*sin(w*t)
 
-m = 1
-k = 1
-U_0 = 1
-V_0 = 0
+    m = 1
+    k = 1
+    U_0 = 1
+    V_0 = 0
 
-T = 12*pi
-dt = T/5000.
+    T = 12*pi
+    dt = T/5000.
 
-u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
-U_0=U_0, V_0=V_0, dt=dt)
-plot_u(u, t)
+    u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
+                          U_0=U_0, V_0=V_0, dt=dt)
+    plot_u(u, t)
 
 def sliding_friction():
-from numpy import tanh, sign
+    from numpy import tanh, sign
 
-f = lambda v: mu*m*g*sign(v)
-alpha = 60.0
-s = lambda u: k/alpha*tanh(alpha*u)
-s = lambda u: k*u
-F = lambda t: 0
+    f = lambda v: mu*m*g*sign(v)
+    alpha = 60.0
+    s = lambda u: k/alpha*tanh(alpha*u)
+    s = lambda u: k*u
+    F = lambda t: 0
 
-g = 9.81
-mu = 0.4
-m = 1
-k = 1000
+    g = 9.81
+    mu = 0.4
+    m = 1
+    k = 1000
 
-U_0 = 0.1
-V_0 = 0
+    U_0 = 0.1
+    V_0 = 0
 
-T = 2
-dt = T/5000.
+    T = 2
+    dt = T/5000.
 
-u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
-U_0=U_0, V_0=V_0, dt=dt)
-plot_u(u, t)
+    u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
+                          U_0=U_0, V_0=V_0, dt=dt)
+    plot_u(u, t)
 
 if __name__ == '__main__':
-test_undamped_linear()
-test_manufactured_solution()
-#sliding_friction()
-linear_damping_sine_excitation()
+    test_undamped_linear()
+    test_manufactured_solution()
+    #sliding_friction()
+    linear_damping_sine_excitation()
 
 ```
 
@@ -581,19 +582,19 @@ linear_damping_sine_excitation()
 
 ```python
 def linear_damping():
-b = 0.3
-f = lambda v: b*v
-s = lambda u: k*u
-F = lambda t: 0
-m = 1
-k = 1
-U_0 = 1
-V_0 = 0
-T = 12*pi
-dt = T/5000.
-u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
-U_0=U_0, V_0=V_0, dt=dt)
-plot_u(u, t)
+    b = 0.3
+    f = lambda v: b*v
+    s = lambda u: k*u
+    F = lambda t: 0
+    m = 1
+    k = 1
+    U_0 = 1
+    V_0 = 0
+    T = 12*pi
+    dt = T/5000.
+    u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
+                          U_0=U_0, V_0=V_0, dt=dt)
+    plot_u(u, t)
 ```
 
 ### 4.3.10 Illustration of Linear Damping with Sinusoidal Excitation
@@ -603,22 +604,22 @@ plot_u(u, t)
 
 ```python
 def sliding_friction():
-from numpy import tanh, sign
-f = lambda v: mu*m*g*sign(v)
-alpha = 60.0
-s = lambda u: k/alpha*tanh(alpha*u)
-F = lambda t: 0
-g = 9.81
-mu = 0.4
-m = 1
-k = 1000
-U_0 = 0.1
-V_0 = 0
-T = 2
-dt = T/5000.
-u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
-U_0=U_0, V_0=V_0, dt=dt)
-plot_u(u, t)
+    from numpy import tanh, sign
+    f = lambda v: mu*m*g*sign(v)
+    alpha = 60.0
+    s = lambda u: k/alpha*tanh(alpha*u)
+    F = lambda t: 0
+    g = 9.81
+    mu = 0.4
+    m = 1
+    k = 1000
+    U_0 = 0.1
+    V_0 = 0
+    T = 2
+    dt = T/5000.
+    u, v, t = EulerCromer(f=f, s=s, F=F, m=m, T=T,
+                          U_0=U_0, V_0=V_0, dt=dt)
+    plot_u(u, t)
 ```
 
 ### 4.3.12 A finite Difference Method; Undamped, Linear Case
@@ -629,20 +630,20 @@ plot_u(u, t)
 from numpy import zeros, linspace
 
 def osc_2nd_order(U_0, omega, dt, T):
-"""
-Solve u'' + omega**2*u = 0 for t in (0,T], u(0)=U_0 and u'(0)=0,
-by a central finite difference method with time step dt.
-"""
-dt = float(dt)
-Nt = int(round(T/dt))
-u = zeros(Nt+1)
-t = linspace(0, Nt*dt, Nt+1)
+    """
+    Solve u'' + omega**2*u = 0 for t in (0,T], u(0)=U_0 and u'(0)=0,
+    by a central finite difference method with time step dt.
+    """
+    dt = float(dt)
+    Nt = int(round(T/dt))
+    u = zeros(Nt+1)
+    t = linspace(0, Nt*dt, Nt+1)
 
-u[0] = U_0
-u[1] = u[0] - 0.5*dt**2*omega**2*u[0]
-for n in range(1, Nt):
-u[n+1] = 2*u[n] - u[n-1] - dt**2*omega**2*u[n]
-return u, t
+    u[0] = U_0
+    u[1] = u[0] - 0.5*dt**2*omega**2*u[0]
+    for n in range(1, Nt):
+        u[n+1] = 2*u[n] - u[n-1] - dt**2*omega**2*u[n]
+    return u, t
 
 ```
 

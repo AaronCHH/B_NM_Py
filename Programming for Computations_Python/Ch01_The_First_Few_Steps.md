@@ -30,6 +30,7 @@
 
 <!-- tocstop -->
 
+
 # 1 The First Few Steps
 
 ## 1.1 What Is a Program? And What Is Programming?
@@ -57,7 +58,7 @@ print(y)
 %run py/ball.py
 ```
 
-1.2342
+    1.2342
 
 
 ### 1.2.2 Dissection of the Program
@@ -90,7 +91,7 @@ print((angle/pi)*180)
 %run py/ball_angle_first_try.py
 ```
 
-45.0
+    45.0
 
 
 ## 1.4 A Python Program with Vectorization and Plotting
@@ -120,7 +121,7 @@ plt.show()
 ```
 
 
-![png](Ch01_The_First_Few_Steps_files/Ch01_The_First_Few_Steps_17_0.png)
+![png](Ch01_The_First_Few_Steps_files/Ch01_The_First_Few_Steps_18_0.png)
 
 
 ## 1.5 More Basic Concepts
@@ -150,8 +151,8 @@ print('real=%9.3e, integer=%5d, string=%s' % (real, integer, string))
 %run py/formatted_print.py
 ```
 
-real=12.896, integer=42, string=some message
-real=1.290e+01, integer=   42, string=some message
+    real=12.896, integer=42, string=some message
+    real=1.290e+01, integer=   42, string=some message
 
 
 ### 1.5.6 Arrays
@@ -186,7 +187,7 @@ plt.show()
 ```
 
 
-![png](Ch01_The_First_Few_Steps_files/Ch01_The_First_Few_Steps_29_0.png)
+![png](Ch01_The_First_Few_Steps_files/Ch01_The_First_Few_Steps_30_0.png)
 
 
 
@@ -215,8 +216,8 @@ print(y)
 %run py/matrix_vector_product.py
 ```
 
-[[ 3.]
-[ 2.]]
+    [[ 3.]
+     [ 2.]]
 
 
 ### 1.5.8 Error Messages and Warnings
@@ -246,12 +247,12 @@ print(solve(5*x - 15, x))           # Solves 5*x = 15
 %run py/example_symbolic.py
 ```
 
-5*x - y
-2*x
-sin(x)
-x + 1
-1
-[3]
+    5*x - y
+    2*x
+    sin(x)
+    x + 1
+    1
+    [3]
 
 
 ### 1.5.11 Concluding Remarks

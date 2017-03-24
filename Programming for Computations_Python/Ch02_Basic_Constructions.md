@@ -13,6 +13,7 @@
 
 <!-- tocstop -->
 
+
 ## 2.1 If Tests, Colon and Indentation
 
 ## 2.2 Functions
@@ -21,9 +22,9 @@
 ```python
 # %load py/ball_function.py
 def y(t):
-v0 = 5                    # Initial velocity
-g = 9.81                  # Acceleration of gravity
-return v0*t - 0.5*g*t**2
+    v0 = 5                    # Initial velocity
+    g = 9.81                  # Acceleration of gravity
+    return v0*t - 0.5*g*t**2
 
 time = 0.6       # Just pick one point in time
 print(y(time))
@@ -37,19 +38,19 @@ print(y(time))
 %run py/ball_function.py
 ```
 
-1.2342
-0.5269499999999994
+    1.2342
+    0.5269499999999994
 
 
 
 ```python
 # %load py/ball_position_xy.py
 def y(v0y, t):
-g = 9.81                  # Acceleration of gravity
-return v0y*t - 0.5*g*t**2
+    g = 9.81                  # Acceleration of gravity
+    return v0y*t - 0.5*g*t**2
 
 def x(v0x, t):
-return v0x*t
+    return v0x*t
 
 initial_velocity_x = 2.0
 initial_velocity_y = 5.0
@@ -66,21 +67,21 @@ print(x(initial_velocity_x, time), y(initial_velocity_y, time))
 %run py/ball_position_xy.py
 ```
 
-1.2 1.2342
-1.8 0.5269499999999994
+    1.2 1.2342
+    1.8 0.5269499999999994
 
 
 
 ```python
 # %load py/function_as_argument.py
 def sum_xy(x, y):
-return x + y
+    return x + y
 
 def prod_xy(x, y):
-return x*y
+    return x*y
 
 def treat_xy(f, x, y):
-return f(x, y)
+    return f(x, y)
 
 x = 2;  y = 3
 
@@ -93,8 +94,8 @@ print(treat_xy(prod_xy, x, y))
 %run py/function_as_argument.py
 ```
 
-5
-6
+    5
+    6
 
 
 ## 2.3 For Loops
@@ -115,8 +116,8 @@ y = v0*t - 0.5*g*t**2     # Generate all heights
 
 largest_height = y[0]          # Starting value for search
 for i in range(1, 1000):
-if y[i] > largest_height:
-largest_height = y[i]
+    if y[i] > largest_height:
+        largest_height = y[i]
 
 print("The largest height achieved was %f m" % (largest_height))
 
@@ -132,7 +133,7 @@ plt.ylabel('Height (m)')
 %run py/ball_max_height.py
 ```
 
-The largest height achieved was 1.274210 m
+    The largest height achieved was 1.274210 m
 
 
 ## 2.4 While Loops
@@ -150,7 +151,7 @@ y = v0*t - 0.5*g*t**2     # Generate all heights
 # Find where the ball hits y=0
 i = 0
 while y[i] >= 0:
-i += 1
+    i += 1
 
 # Now, y[i-1]>0 and y[i]<0 so let's take the middle point
 # in time as the approximation for when the ball hits h=0
@@ -171,11 +172,11 @@ plt.show()
 %run py/ball_time.py
 ```
 
-y=0 at 0.917417417417
+    y=0 at 0.917417417417
 
 
 
-![png](Ch02_Basic_Constructions_files/Ch02_Basic_Constructions_14_1.png)
+![png](Ch02_Basic_Constructions_files/Ch02_Basic_Constructions_15_1.png)
 
 
 ## 2.5 Lists and Tuples – Alternatives to Arrays
@@ -197,15 +198,15 @@ x.append(3.14)  # x then becomes [-2, ’hello’, 4, 6, 3.14]
 ```python
 x = ['hello' , 4, 3.14, 6]
 for e in x:
-print('x element: ' , e)
+    print('x element: ' , e)
 print('This was all the elements in the list x')
 ```
 
-x element:  hello
-x element:  4
-x element:  3.14
-x element:  6
-This was all the elements in the list x
+    x element:  hello
+    x element:  4
+    x element:  3.14
+    x element:  6
+    This was all the elements in the list x
 
 
 
@@ -217,7 +218,7 @@ List_1
 
 
 
-[1, 2, 3, 4]
+    [1, 2, 3, 4]
 
 
 
@@ -230,7 +231,7 @@ List_2
 
 
 
-[10, 20, 30, 40]
+    [10, 20, 30, 40]
 
 
 
@@ -244,15 +245,15 @@ List_2
 ```python
 x = ('hello' , 4, 3.14, 6)
 for e in x:
-print('x element: ' , e)
+    print('x element: ' , e)
 print('This was all the elements in the tuple x')
 ```
 
-x element:  hello
-x element:  4
-x element:  3.14
-x element:  6
-This was all the elements in the tuple x
+    x element:  hello
+    x element:  4
+    x element:  3.14
+    x element:  6
+    This was all the elements in the tuple x
 
 
 ## 2.6 Reading from and Writing to Files
@@ -267,26 +268,26 @@ line = infile.readline()      # Read first line
 x = []
 y = []
 for line in infile:
-words = line.split()      # Split line into words
-x.append(float(words[0]))
-y.append(float(words[1]))
+    words = line.split()      # Split line into words
+    x.append(float(words[0]))
+    y.append(float(words[1]))
 infile.close()
 
 # Transform y coordinates
 from math import log
 
 def f(y):
-return log(y)
+    return log(y)
 
 for i in range(len(y)):
-y[i] = f(y[i])
+    y[i] = f(y[i])
 
 # Write out x and y to a two-column file
 filename = 'tmp_out.dat'
 outfile = open(filename, 'w')  # Open file for writing
 outfile.write('# x and y coordinates\n')
 for xi, yi in zip(x, y):
-outfile.write('%10.5f %10.5f\n' % (xi, yi))
+    outfile.write('%10.5f %10.5f\n' % (xi, yi))
 outfile.close()
 
 
