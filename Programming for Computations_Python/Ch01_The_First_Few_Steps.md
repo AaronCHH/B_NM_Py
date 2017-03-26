@@ -36,6 +36,8 @@
 ## 1.1 What Is a Program? And What Is Programming?
 
 ## 1.2 A Python Program with Variables
+* http://www.perl.com/pub/2007/12/06/soto-11.html
+* http://en.wikipedia.org/wiki/Ada_Lovelace
 
 ### 1.2.1 The Program
 
@@ -70,6 +72,7 @@ print(y)
 ### 1.2.5 Installation of Python
 
 ### 1.2.6 Write and Run Your First Program
+* http://continuum.io/downloads
 
 ## 1.3 A Python Program with a Library Function
 
