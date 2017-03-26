@@ -1,32 +1,32 @@
 
 # 1 Algorithms and Implementations
-<!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
 
-* [1 Algorithms and Implementations](#1-algorithms-and-implementations)
-  * [1.1 Finite Difference Methods](#11-finite-difference-methods)
-  * [1.2 Implementations](#12-implementations)
-    * [1.2.1 Computer Language: Python](#121-computer-language-python)
-    * [1.2.2 Making a Solver Function](#122-making-a-solver-function)
-    * [1.2.3 Integer Division](#123-integer-division)
-    * [1.2.4 Doc Strings](#124-doc-strings)
-    * [1.2.5 Formatting Numbers](#125-formatting-numbers)
-    * [1.2.6 Running the Program](#126-running-the-program)
-    * [1.2.7 Plotting the Solution](#127-plotting-the-solution)
-    * [1.2.8 Verifying the Implementation](#128-verifying-the-implementation)
-    * [1.2.9 Computing the Numerical Error as a Mesh Function](#129-computing-the-numerical-error-as-a-mesh-function)
-    * [1.2.10 Computing the Norm of the Error Mesh Function](#1210-computing-the-norm-of-the-error-mesh-function)
-    * [1.2.11 Experiments with Computing and Plotting](#1211-experiments-with-computing-and-plotting)
-    * [1.2.12 Memory-Saving Implementation](#1212-memory-saving-implementation)
-  * [1.3 Exercises](#13-exercises)
-    * [Exercise 1.1: Define a mesh function and visualize it](#exercise-11-define-a-mesh-function-and-visualize-it)
-    * [Exercise 1.2: Differentiate a function](#exercise-12-differentiate-a-function)
-    * [Exercise 1.3: Experiment with divisions](#exercise-13-experiment-with-divisions)
-    * [Exercise 1.4: Experiment with wrong computations](#exercise-14-experiment-with-wrong-computations)
-    * [Exercise 1.5: Plot the error function](#exercise-15-plot-the-error-function)
-    * [Exercise 1.6: Change formatting of numbers and debug](#exercise-16-change-formatting-of-numbers-and-debug)
+<!-- TOC -->
 
-<!-- tocstop -->
+- [1 Algorithms and Implementations](#1-algorithms-and-implementations)
+  - [1.1 Finite Difference Methods](#11-finite-difference-methods)
+  - [1.2 Implementations](#12-implementations)
+    - [1.2.1 Computer Language: Python](#121-computer-language-python)
+    - [1.2.2 Making a Solver Function](#122-making-a-solver-function)
+    - [1.2.3 Integer Division](#123-integer-division)
+    - [1.2.4 Doc Strings](#124-doc-strings)
+    - [1.2.5 Formatting Numbers](#125-formatting-numbers)
+    - [1.2.6 Running the Program](#126-running-the-program)
+    - [1.2.7 Plotting the Solution](#127-plotting-the-solution)
+    - [1.2.8 Verifying the Implementation](#128-verifying-the-implementation)
+    - [1.2.9 Computing the Numerical Error as a Mesh Function](#129-computing-the-numerical-error-as-a-mesh-function)
+    - [1.2.10 Computing the Norm of the Error Mesh Function](#1210-computing-the-norm-of-the-error-mesh-function)
+    - [1.2.11 Experiments with Computing and Plotting](#1211-experiments-with-computing-and-plotting)
+    - [1.2.12 Memory-Saving Implementation](#1212-memory-saving-implementation)
+  - [1.3 Exercises](#13-exercises)
+    - [Exercise 1.1: Define a mesh function and visualize it](#exercise-11-define-a-mesh-function-and-visualize-it)
+    - [Exercise 1.2: Differentiate a function](#exercise-12-differentiate-a-function)
+    - [Exercise 1.3: Experiment with divisions](#exercise-13-experiment-with-divisions)
+    - [Exercise 1.4: Experiment with wrong computations](#exercise-14-experiment-with-wrong-computations)
+    - [Exercise 1.5: Plot the error function](#exercise-15-plot-the-error-function)
+    - [Exercise 1.6: Change formatting of numbers and debug](#exercise-16-change-formatting-of-numbers-and-debug)
 
+<!-- /TOC -->
 
 ## 1.1 Finite Difference Methods
 
@@ -50,7 +50,7 @@ def solver(I, a, T, dt, theta):
     T = Nt*dt                # adjust T to fit time step dt
     u = zeros(Nt+1)          # array of u[n] values
     t = linspace(0, T, Nt+1) # time mesh
-
+    
     u[0] = I                 # assign initial condition
     for n in range(0, Nt):   # n=0,1,...,Nt-1
         u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
@@ -69,7 +69,7 @@ def solver(I, a, T, dt, theta):
     T = Nt*dt                   # adjust T to fit time step dt
     u = zeros(Nt+1)             # array of u[n] values
     t = linspace(0, T, Nt+1)    # time mesh
-
+    
     u[0] = I                    # assign initial condition
     for n in range(0, Nt):      # n=0,1,...,Nt-1
         u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
@@ -156,7 +156,7 @@ plt.show()
     t= 6.400 u=0.000478865
     t= 7.200 u=0.000184179
     t= 8.000 u=7.0838e-05
-
+    
 
 
 ![png](Ch01_Algorithms_and_Implementations_files/Ch01_Algorithms_and_Implementations_19_1.png)
@@ -232,11 +232,50 @@ show()
 
 ### Exercise 1.2: Differentiate a function
 
+
+```python
+d[1:-1] = (u[2:] - u[0:-2])/(2*dt)
+# or
+d[1:N_t] = (u[2:N_t+1] - u[0:N_t-1])/(2*dt)
+```
+
 ### Exercise 1.3: Experiment with divisions
+
+
+```python
+dt = 3
+T = 8
+Nt = T/dt
+Nt
+theta = 1; a = 1
+(1 - (1-theta)*a*dt)/(1 + theta*dt*a)
+```
+
+
+
+
+    0
+
+
 
 ### Exercise 1.4: Experiment with wrong computations
 
+
+```python
+u, t = solver(I=1, a=1, T=7, dt=2, theta=1)
+```
+
+
+```python
+%run decay_v1.py
+```
+
 ### Exercise 1.5: Plot the error function
+
+
+```python
+
+```
 
 ### Exercise 1.6: Change formatting of numbers and debug
 
