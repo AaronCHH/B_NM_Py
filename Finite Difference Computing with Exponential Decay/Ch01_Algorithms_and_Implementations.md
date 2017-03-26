@@ -1,6 +1,30 @@
 
 # 1 Algorithms and Implementations
 <!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
+
+* [1 Algorithms and Implementations](#1-algorithms-and-implementations)
+  * [1.1 Finite Difference Methods](#11-finite-difference-methods)
+  * [1.2 Implementations](#12-implementations)
+    * [1.2.1 Computer Language: Python](#121-computer-language-python)
+    * [1.2.2 Making a Solver Function](#122-making-a-solver-function)
+    * [1.2.3 Integer Division](#123-integer-division)
+    * [1.2.4 Doc Strings](#124-doc-strings)
+    * [1.2.5 Formatting Numbers](#125-formatting-numbers)
+    * [1.2.6 Running the Program](#126-running-the-program)
+    * [1.2.7 Plotting the Solution](#127-plotting-the-solution)
+    * [1.2.8 Verifying the Implementation](#128-verifying-the-implementation)
+    * [1.2.9 Computing the Numerical Error as a Mesh Function](#129-computing-the-numerical-error-as-a-mesh-function)
+    * [1.2.10 Computing the Norm of the Error Mesh Function](#1210-computing-the-norm-of-the-error-mesh-function)
+    * [1.2.11 Experiments with Computing and Plotting](#1211-experiments-with-computing-and-plotting)
+    * [1.2.12 Memory-Saving Implementation](#1212-memory-saving-implementation)
+  * [1.3 Exercises](#13-exercises)
+    * [Exercise 1.1: Define a mesh function and visualize it](#exercise-11-define-a-mesh-function-and-visualize-it)
+    * [Exercise 1.2: Differentiate a function](#exercise-12-differentiate-a-function)
+    * [Exercise 1.3: Experiment with divisions](#exercise-13-experiment-with-divisions)
+    * [Exercise 1.4: Experiment with wrong computations](#exercise-14-experiment-with-wrong-computations)
+    * [Exercise 1.5: Plot the error function](#exercise-15-plot-the-error-function)
+    * [Exercise 1.6: Change formatting of numbers and debug](#exercise-16-change-formatting-of-numbers-and-debug)
+
 <!-- tocstop -->
 
 

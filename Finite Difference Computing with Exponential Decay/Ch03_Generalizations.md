@@ -1,6 +1,37 @@
 
 # 3 Generalizations
 <!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
+
+* [3 Generalizations](#3-generalizations)
+  * [3.1 Model Extensions](#31-model-extensions)
+    * [3.1.1 Generalization: Including a Variable Coefficient](#311-generalization-including-a-variable-coefficient)
+    * [3.1.2 Generalization: Including a Source Term](#312-generalization-including-a-source-term)
+    * [3.1.3 Implementation of the Generalized Model Problem](#313-implementation-of-the-generalized-model-problem)
+    * [3.1.4 Verifying a Constant Solution](#314-verifying-a-constant-solution)
+    * [3.1.5 Verification via Manufactured Solutions](#315-verification-via-manufactured-solutions)
+    * [3.1.6 Computing Convergence Rates](#316-computing-convergence-rates)
+    * [3.1.7 Extension to Systems of ODEs](#317-extension-to-systems-of-odes)
+  * [3.2 General First-Order ODEs](#32-general-first-order-odes)
+    * [3.2.1 Generic Form of First-Order ODEs](#321-generic-form-of-first-order-odes)
+    * [3.2.2 The theta-Rule](#322-the-theta-rule)
+    * [3.2.3 An Implicit 2-Step Backward Scheme](#323-an-implicit-2-step-backward-scheme)
+    * [3.2.4 Leapfrog Schemes](#324-leapfrog-schemes)
+    * [3.2.5 The 2nd-Order Runge–Kutta Method](#325-the-2nd-order-rungekutta-method)
+    * [3.2.6 A 2nd-Order Taylor-Series Method](#326-a-2nd-order-taylor-series-method)
+    * [3.2.7 The 2nd- and 3rd-Order Adams–Bashforth Schemes](#327-the-2nd-and-3rd-order-adamsbashforth-schemes)
+    * [3.2.8 The 4th-Order Runge–Kutta Method](#328-the-4th-order-rungekutta-method)
+    * [3.2.9 The Odespy Software](#329-the-odespy-software)
+    * [3.2.10 Example: Runge–Kutta Methods](#3210-example-rungekutta-methods)
+    * [3.2.11 Example: Adaptive Runge–Kutta Methods](#3211-example-adaptive-rungekutta-methods)
+  * [3.3 Exercises](#33-exercises)
+    * [Exercise 3.1: Experiment with precision in tests and the size of u](#exercise-31-experiment-with-precision-in-tests-and-the-size-of-u)
+    * [Exercise 3.2: Implement the 2-step backward scheme](#exercise-32-implement-the-2-step-backward-scheme)
+    * [Exercise 3.3: Implement the 2nd-order Adams–Bashforth scheme](#exercise-33-implement-the-2nd-order-adamsbashforth-scheme)
+    * [Exercise 3.4: Implement the 3rd-order Adams–Bashforth scheme](#exercise-34-implement-the-3rd-order-adamsbashforth-scheme)
+    * [Exercise 3.5: Analyze explicit 2nd-order methods](#exercise-35-analyze-explicit-2nd-order-methods)
+    * [Exercise 3.6: Implement and investigate the Leapfrog scheme](#exercise-36-implement-and-investigate-the-leapfrog-scheme)
+    * [Exercise 3.7: Make a unified implementation of many schemes](#exercise-37-make-a-unified-implementation-of-many-schemes)
+
 <!-- tocstop -->
 
 

@@ -1,6 +1,33 @@
 
 # 2 Analysis
 <!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
+
+* [2 Analysis](#2-analysis)
+  * [2.1 Experimental Investigations](#21-experimental-investigations)
+    * [2.1.1 Discouraging Numerical Solutions](#211-discouraging-numerical-solutions)
+    * [2.1.2 Detailed Experiments](#212-detailed-experiments)
+  * [2.2 Stability](#22-stability)
+    * [2.2.1 Exact Numerical Solution](#221-exact-numerical-solution)
+    * [2.2.2 Stability Properties Derived from the Amplification Factor 45](#222-stability-properties-derived-from-the-amplification-factor-45)
+  * [2.3 Accuracy](#23-accuracy)
+    * [2.3.1 Visual Comparison of Amplification Factors](#231-visual-comparison-of-amplification-factors)
+    * [2.3.2 Series Expansion of Amplification Factors](#232-series-expansion-of-amplification-factors)
+    * [2.3.3 The Ratio of Numerical and Exact Amplification Factors](#233-the-ratio-of-numerical-and-exact-amplification-factors)
+    * [2.3.4 The Global Error at a Point](#234-the-global-error-at-a-point)
+    * [2.3.5 Integrated Error](#235-integrated-error)
+    * [2.3.6 Truncation Error](#236-truncation-error)
+    * [2.3.7 Consistency, Stability, and Convergence](#237-consistency-stability-and-convergence)
+  * [2.4 Various Types of Errors in a Differential Equation Model](#24-various-types-of-errors-in-a-differential-equation-model)
+    * [2.4.1 Model Errors](#241-model-errors)
+    * [2.4.2 Data Errors](#242-data-errors)
+    * [2.4.3 Discretization Errors](#243-discretization-errors)
+    * [2.4.4 Rounding Errors](#244-rounding-errors)
+    * [2.4.5 Discussion of the Size of Various Errors](#245-discussion-of-the-size-of-various-errors)
+  * [2.5 Exercises](#25-exercises)
+    * [Problem 2.1: Visualize the accuracy of finite differences](#problem-21-visualize-the-accuracy-of-finite-differences)
+    * [Problem 2.2: Explore the 0 -rule for exponential growth](#problem-22-explore-the-0-rule-for-exponential-growth)
+    * [Problem 2.3: Explore rounding errors in numerical calculus](#problem-23-explore-rounding-errors-in-numerical-calculus)
+
 <!-- tocstop -->
 
 
